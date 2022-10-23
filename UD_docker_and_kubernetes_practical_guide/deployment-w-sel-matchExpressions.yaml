@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: third-dep
+spec:
+  replicas: 1
+  selector:
+    matchExpressions:
+      - {key: app, operator: In, values: [third-app]}
+  template:
+    metadata:
+      labels:
+        app: third-app
+        tier: backend
+    spec:
+      containers:
+        - name: second-con
+          image: nginx:mainline
+
